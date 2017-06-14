@@ -27,12 +27,9 @@ public class LineRenderController : MonoBehaviour
     private GameObject Prefab_NavMesh;
 
     private int SmoothAmountTimeForPath = 8;
-    private int SmoothAmountTimeAI = 2;
+    private int SmoothAmountTimeAI = 4;
 
     private Dictionary<AI_TYPE, List<TrafficLine>> Map = new Dictionary<AI_TYPE, List<TrafficLine>>();
-
-
-    private static int[] NavMeshWidth = { 10, 10, 10, 10 };
 
     public void BuildNewTrafficLine(AI_TYPE InType, Vector3[] InPositions, bool SmoothPath)
     {

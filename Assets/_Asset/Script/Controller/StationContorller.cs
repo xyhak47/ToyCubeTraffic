@@ -12,7 +12,7 @@ public class StationContorller : MonoBehaviour
         Instance = this;
     }
 
-    private Dictionary<AI_TYPE, List<TrafficStation> > Map_Stations = new Dictionary<AI_TYPE, List<TrafficStation> >();
+    public Dictionary<AI_TYPE, List<TrafficStation> > Map_Stations = new Dictionary<AI_TYPE, List<TrafficStation> >();
 
     public Dictionary<AI_TYPE, Dictionary<int, Vector3>> Map_Positions = new Dictionary<AI_TYPE, Dictionary<int, Vector3>>();
 
@@ -211,7 +211,7 @@ public class StationContorller : MonoBehaviour
                 GameObject ParentStation = stations[Random.Range(0, stations.Count)].gameObject;
 
                 // Send new AI
-                AIController.Instance.SendAI(InType, Map_Level[InType], ParentStation);
+                yield return AIController.Instance.SendAI(InType, Map_Level[InType], ParentStation);
             }
         }
     }

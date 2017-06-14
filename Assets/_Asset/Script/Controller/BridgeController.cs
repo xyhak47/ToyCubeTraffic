@@ -25,7 +25,7 @@ public class BridgeController : MonoBehaviour
 
     private float BridgeDistanceLimit = 20f;
 
-    private Dictionary<AI_TYPE, List<GameObject>> Map_Maker = new Dictionary<AI_TYPE, List<GameObject>>();
+    public Dictionary<AI_TYPE, List<GameObject>> Map_Maker = new Dictionary<AI_TYPE, List<GameObject>>();
     private Dictionary<AI_TYPE, List<GameObject>> Map_Bridge = new Dictionary<AI_TYPE, List<GameObject>>();
 
 
@@ -61,6 +61,8 @@ public class BridgeController : MonoBehaviour
         }
 
         makers.Add(bridgeMaker);
+
+        BuildingController.Instance.BuildLittleStuff(InType);
     }
 
     public void BuildNewBridge(AI_TYPE InType, Vector3 InPosition, Quaternion InRotation)
@@ -91,7 +93,7 @@ public class BridgeController : MonoBehaviour
 
         // Scale
        // InBridge.transform.localScale = new Vector3(distance, 200, 0.0001f);
-        InBridge.transform.localScale = new Vector3(distance + 4, 1, 10);
+        InBridge.transform.localScale = new Vector3(distance + 4, 1, 15);
         InBridge.GetComponent<BoxCollider>().size = new Vector3(distance/ (distance + 4), 50, 0.0001f);
 
         // Rotate

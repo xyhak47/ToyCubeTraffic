@@ -21,9 +21,11 @@ public class CameraRay : MonoBehaviour
         mousePos.x = Input.mousePosition.x;
         mousePos.y = c.pixelHeight - Input.mousePosition.y;
 
-        p = c.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -700));
+        float offset = GetLayerOffset(type);
 
-        p.y = -700;
+        p = c.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, offset));
+
+        p.y = offset;
         p.x *= -1;
 
         StationContorller.Instance.BuildNewStation(type, p);
@@ -55,6 +57,17 @@ public class CameraRay : MonoBehaviour
         {
             type = AI_TYPE.SHIP;
         }
+    }
+
+    private const float Offset_Y = -700.0f;
+    private const float LayerHeight = 20.0f;
+    public float GetLayerOffset(AI_TYPE InType)
+    {
+        if (InType == AI_TYPE.AIRPLANE) return LayerHeight * 4 + Offset_Y;
+        else if (InType == AI_TYPE.CAR) return LayerHeight * 3 + Offset_Y;
+        else if (InType == AI_TYPE.TRAIN) return LayerHeight * 2 + Offset_Y;
+        else if (InType == AI_TYPE.SHIP) return LayerHeight + Offset_Y;
+        else return Offset_Y;
     }
 
     //void OnGUI()

@@ -11,38 +11,17 @@ public class TrafficAI : MonoBehaviour
     [System.NonSerialized]
     public AI_TYPE type;
 
-    [System.NonSerialized]
-    public int JustArrivedStationId = -1;
+    static string[] SoundComingName = { Config.SOUND_TrainComing, Config.SOUND_CarComing, Config.SOUND_AirplaneComing, Config.SOUND_ShipComing };
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-       // agent.radius = 0.06f;
+
+        SoundController.Instance.PlayMusic(SoundComingName[(int)type]);
     }
 
     public void MoveToNextDestination(Vector3 InPosition)
     {
-        if (agent.isOnNavMesh == false)
-        {
-            print("agent.isOnNavMesh == false");
-            return;
-        }
-        agent.Stop(true);
         agent.SetDestination(InPosition);
-        agent.Resume();
-    }
-
-    public void WaitForResume()
-    {
-        agent.Stop(true);
-        transform.parent = null;
-        gameObject.SetActive(false);
-    }
-
-    public void Resume(GameObject InNewParent)
-    {
-        transform.parent = InNewParent.transform;
-        agent.Stop(false);
-        gameObject.SetActive(true);
     }
 }

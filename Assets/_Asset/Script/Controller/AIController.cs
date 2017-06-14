@@ -45,7 +45,7 @@ public class AIController : MonoBehaviour
                 List_AIData.Add(new AIData((AI_TYPE)i, (AI_LEVEL)j));
     }
 
-    public void SendAI(AI_TYPE InType, AI_LEVEL InLevel, GameObject InParent)
+    public IEnumerator SendAI(AI_TYPE InType, AI_LEVEL InLevel, GameObject InParent)
     {
         List<GameObject> List_AI;
         if (!Map_AI.TryGetValue(InType, out List_AI))
@@ -60,6 +60,8 @@ public class AIController : MonoBehaviour
             AI.GetComponent<TrafficAI>().type = InType;
 
             List_AI.Add(AI);
+
+            yield return new WaitForSeconds(2);
         }
     }
 

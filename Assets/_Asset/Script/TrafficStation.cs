@@ -48,11 +48,6 @@ public class TrafficStation : MonoBehaviour
         return Positions_Map[type][minWeightEdge.End];
     }
 
-    public void SetColor(Color InColor)
-    {
-       // GetComponent<MeshRenderer>().material.SetColor("_Color", InColor);
-    }
-
     private void ResetTransform(GameObject In, Vector3 InBegin, Vector3 InEnd)
     {
         Vector3 direction = InBegin - InEnd;

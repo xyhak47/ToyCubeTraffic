@@ -27,9 +27,12 @@ public class BridgeMaker : MonoBehaviour
             ResetPosition(otherMaker, ref pos);
 
             BridgeController.Instance.BuildNewBridge(type, pos, transform.rotation);
+        }
 
-           // GetComponent<MeshRenderer>().enabled = true;
-           // otherMaker.GetComponent<MeshRenderer>().enabled = true;
+        // Make sure the river is clear
+        if(other.gameObject.layer == LayerMask.NameToLayer("Building"))
+        {
+            Destroy(other.gameObject);
         }
     }
 
